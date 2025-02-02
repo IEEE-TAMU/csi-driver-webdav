@@ -1,7 +1,7 @@
 GIT_COMMIT = $(shell git rev-parse HEAD)
 BUILD_DATE = $(shell date -u +"%Y-%m-%dT%H:%M:%SZ")
 
-PKG = github.com/sys-liqian/csi-driver-webdav
+PKG = github.com/gigamonster256/csi-driver-webdav
 LDFLAGS = -X ${PKG}/pkg/webdav.driverVersion=${IMAGE_VERSION} -X ${PKG}/pkg/webdav.gitCommit=${GIT_COMMIT} -X ${PKG}/pkg/webdav.buildDate=${BUILD_DATE}
 EXT_LDFLAGS = -s -w -extldflags "-static"
 
