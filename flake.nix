@@ -30,7 +30,7 @@
         };
 
         docker = pkgs.dockerTools.buildLayeredImage {
-          name = "ghcr.io/gigamonster256/webdavplugin";
+          name = "webdavplugin";
           tag = "latest";
           contents = [pkgs.davfs2];
           config.Cmd = "${webdavplugin}/bin/webdav";

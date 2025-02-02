@@ -19,5 +19,6 @@ in
     packages = [
       goEnv
       gomod2nix
+      pkgs.skopeo
     ];
   }
