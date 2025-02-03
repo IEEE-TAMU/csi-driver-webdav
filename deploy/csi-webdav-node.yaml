@@ -85,7 +85,7 @@ spec:
             capabilities:
               add: ["SYS_ADMIN"]
             allowPrivilegeEscalation: true
-          image: localhost:5000/webdavplugin:v0.0.1
+          image: ghcr.io/gigamonster256/webdavplugin:latest
           imagePullPolicy: IfNotPresent
           args:
             - "-v=5"

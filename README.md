@@ -21,7 +21,7 @@ kind create cluster --image kindest/node:v1.27.3
 kind load docker-image registry.k8s.io/sig-storage/csi-provisioner:v3.6.2
 kind load docker-image registry.k8s.io/sig-storage/livenessprobe:v2.11.0
 kind load docker-image registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.9.1
-kind load docker-image localhost:5000/webdavplugin:v0.0.1
+kind load docker-image ghcr.io/gigamonster256/webdavplugin:latest
 ```
 
 ### Deploy CSI 
