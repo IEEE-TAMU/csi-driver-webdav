@@ -32,7 +32,7 @@
         docker = pkgs.dockerTools.buildLayeredImage {
           name = "webdavplugin";
           tag = "latest";
-          contents = [pkgs.davfs2];
+          contents = with pkgs; [mount davfs2];
           config.Entrypoint = ["${webdavplugin}/bin/webdav"];
         };
       };
