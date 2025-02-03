@@ -29,10 +29,13 @@
           inherit (gomod2nix.legacyPackages.${system}) buildGoApplication;
         };
 
-        docker = pkgs.dockerTools.buildLayeredImage {
+        docker = pkgs.dockerTools.buildImage {
           name = "webdavplugin";
           tag = "latest";
-          contents = [pkgs.davfs2];
+          contents = pkgs.buildEnv {
+            name = "webdavplugin";
+            paths = [pkgs.davfs2];
+          };
           config.Cmd = "${webdavplugin}/bin/webdav";
         };
       };
