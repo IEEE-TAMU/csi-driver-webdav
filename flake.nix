@@ -32,7 +32,14 @@
         docker = pkgs.dockerTools.buildLayeredImage {
           name = "webdavplugin";
           tag = "latest";
-          contents = with pkgs; [mount davfs2];
+          contents = pkgs.buildEnv {
+            name = "image-root";
+            paths = with pkgs; [
+              mount
+              davfs2
+              fakeNss # https://nixos.org/manual/nixpkgs/stable/#ssec-pkgs-dockerTools-shadowSetup
+            ];
+          };
           config.Entrypoint = ["${webdavplugin}/bin/webdav"];
         };
       };
