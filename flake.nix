@@ -28,28 +28,6 @@
         webdavplugin = callPackage ./. {
           inherit (gomod2nix.legacyPackages.${system}) buildGoApplication;
         };
-
-        docker = pkgs.dockerTools.buildImage {
-          name = "webdavplugin";
-          tag = "latest";
-          contents = pkgs.buildEnv {
-            name = "image-root";
-            paths = with pkgs; [
-              mount
-              davfs2
-            ];
-          };
-          # https://nixos.org/manual/nixpkgs/stable/#ssec-pkgs-dockerTools-shadowSetup
-          runAsRoot = ''
-            ${pkgs.dockerTools.shadowSetup}
-            groupadd -r davfs2
-            useradd -r -g davfs2 davfs2
-            ln -s /proc/mounts /etc/mtab # davfs2 needs this
-            mkdir -p /var/cache/davfs2
-            chmod 0600 /etc/davfs2/secrets # reset permissions
-          '';
-          config.Entrypoint = ["${webdavplugin}/bin/webdav"];
-        };
       };
       devShells.default = callPackage ./shell.nix {
         inherit (gomod2nix.legacyPackages.${system}) mkGoEnv gomod2nix;
