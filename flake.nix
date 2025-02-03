@@ -36,7 +36,7 @@
             name = "webdavplugin";
             paths = [pkgs.davfs2];
           };
-          config.Cmd = "${webdavplugin}/bin/webdav";
+          config.Cmd = ["${webdavplugin}/bin/webdav"];
         };
       };
       devShells.default = callPackage ./shell.nix {
